@@ -4,14 +4,8 @@ import { AppService } from './app.service';
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
-
   @Get()
-  getHello(): string {
+  home() {
     return this.appService.getHello();
-  }
-
-  @Get('/ian_say')
-  getIanSay(): string {
-    return this.appService.getIanSay();
   }
 }

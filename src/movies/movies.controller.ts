@@ -7,6 +7,8 @@ import {
   Patch,
   Post,
   Query,
+  Req,
+  Res,
 } from '@nestjs/common';
 import { CreateMovieDTO } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
@@ -21,6 +23,12 @@ export class MoviesController {
   getAll(): Movie[] {
     return this.moviesService.getAll();
   }
+
+  // not recommend to use @Req() and @Res()
+  // @Get()
+  // getAll(@Req() _req, @Res() _res): Movie[] {
+  //   return this.moviesService.getAll();
+  // }
 
   // put same methods which have params after the methods without params
   // otherwise, methods will recognize 'search' as param

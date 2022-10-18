@@ -23,8 +23,8 @@ export class MoviesController {
   // put same methods which have params after the methods without params
   // otherwise, methods will recognize 'search' as param
   @Get('search')
-  search(@Query('year') _year: string) {
-    return `We are searching for a movie made after: ${_year}`;
+  search(@Query('year') _year: string): Movie[] {
+    return this.moviesService.search(_year);
   }
 
   @Get('/:id')
@@ -44,9 +44,6 @@ export class MoviesController {
 
   @Patch('/:id')
   patch(@Param('id') _movieId: string, @Body() _updateData) {
-    return {
-      updatedMovie: _movieId,
-      ..._updateData,
-    };
+    return this.moviesService.update(_movieId, _updateData);
   }
 }

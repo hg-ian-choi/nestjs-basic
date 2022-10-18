@@ -9,6 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { CreateMovieDTO } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie } from './entities/movie.entity';
 import { MoviesService } from './movies.service';
 
@@ -24,7 +25,7 @@ export class MoviesController {
   // put same methods which have params after the methods without params
   // otherwise, methods will recognize 'search' as param
   @Get('search')
-  search(@Query('year') _year: string): Movie[] {
+  search(@Query('year') _year: number): Movie[] {
     return this.moviesService.search(_year);
   }
 
@@ -39,12 +40,12 @@ export class MoviesController {
   }
 
   @Delete('/:id')
-  remove(@Param('id') _movieId: string) {
+  remove(@Param('id') _movieId: number) {
     return this.moviesService.deleteOne(_movieId);
   }
 
   @Patch('/:id')
-  patch(@Param('id') _movieId: string, @Body() _updateData) {
+  patch(@Param('id') _movieId: number, @Body() _updateData: UpdateMovieDto) {
     return this.moviesService.update(_movieId, _updateData);
   }
 }
